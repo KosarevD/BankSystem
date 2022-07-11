@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="BankSystem">
+        <createTable tableName="BANK">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_BANK"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="DATETIME"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="DATETIME"/>
+            <column name="DELETED_BY" type="VARCHAR(255)"/>
+            <column name="DELETED_DATE" type="DATETIME"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="BankSystem">
+        <createTable tableName="CLIENT">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_CLIENT"/>
+            </column>
+            <column name="FULL_NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PHONE" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EMAIL" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PASSPORT" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="DATETIME"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="DATETIME"/>
+            <column name="DELETED_BY" type="VARCHAR(255)"/>
+            <column name="DELETED_DATE" type="DATETIME"/>
+            <column name="BANK_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="3" author="BankSystem">
+        <createTable tableName="CREDIT">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_CREDIT"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LIMIT_" type="DECIMAL(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="INTEREST_RATE" type="DECIMAL(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="DATETIME"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="DATETIME"/>
+            <column name="DELETED_BY" type="VARCHAR(255)"/>
+            <column name="DELETED_DATE" type="DATETIME"/>
+            <column name="BANK_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="4" author="BankSystem">
+        <createTable tableName="CREDIT_OFFER">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_CREDIT_OFFER"/>
+            </column>
+            <column name="AMOUNT" type="DECIMAL(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CLIENT_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREDIT_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="DATETIME"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="DATETIME"/>
+            <column name="DELETED_BY" type="VARCHAR(255)"/>
+            <column name="DELETED_DATE" type="DATETIME"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="5" author="BankSystem">
+        <createTable tableName="PAYMENT">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_PAYMENT"/>
+            </column>
+            <column name="PAYMENT_DATE" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PAYMENT_AMOUNT" type="DECIMAL(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PAYMENT_CREDIT_AMOUNT" type="DECIMAL(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PAYMENT_PERCENT_AMOUNT" type="DECIMAL(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="DATETIME"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="DATETIME"/>
+            <column name="DELETED_BY" type="VARCHAR(255)"/>
+            <column name="DELETED_DATE" type="DATETIME"/>
+            <column name="CREDIT_OFFER_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="6" author="BankSystem">
+        <createIndex indexName="IDX_CLIENT_BANK_ID" tableName="CLIENT">
+            <column name="BANK_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="BANK_ID" baseTableName="CLIENT" constraintName="FK_CLIENT_ON_BANK"
+                                 referencedColumnNames="ID" referencedTableName="BANK"/>
+    </changeSet>
+    <changeSet id="7" author="BankSystem">
+        <createIndex indexName="IDX_CREDITOFFER_CLIENT_ID" tableName="CREDIT_OFFER">
+            <column name="CLIENT_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="CLIENT_ID" baseTableName="CREDIT_OFFER"
+                                 constraintName="FK_CREDIT_OFFER_ON_CLIENT" referencedColumnNames="ID"
+                                 referencedTableName="CLIENT"/>
+    </changeSet>
+    <changeSet id="8" author="BankSystem">
+        <createIndex indexName="IDX_CREDITOFFER_CREDIT_ID" tableName="CREDIT_OFFER">
+            <column name="CREDIT_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="CREDIT_ID" baseTableName="CREDIT_OFFER"
+                                 constraintName="FK_CREDIT_OFFER_ON_CREDIT" referencedColumnNames="ID"
+                                 referencedTableName="CREDIT"/>
+    </changeSet>
+    <changeSet id="9" author="BankSystem">
+        <createIndex indexName="IDX_CREDIT_BANK_ID" tableName="CREDIT">
+            <column name="BANK_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="BANK_ID" baseTableName="CREDIT" constraintName="FK_CREDIT_ON_BANK"
+                                 referencedColumnNames="ID" referencedTableName="BANK"/>
+    </changeSet>
+    <changeSet id="10" author="BankSystem">
+        <createIndex indexName="IDX_PAYMENT_CREDIT_OFFER_ID" tableName="PAYMENT">
+            <column name="CREDIT_OFFER_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="CREDIT_OFFER_ID" baseTableName="PAYMENT"
+                                 constraintName="FK_PAYMENT_ON_CREDIT_OFFER" referencedColumnNames="ID"
+                                 referencedTableName="CREDIT_OFFER"/>
+    </changeSet>
+</databaseChangeLog>

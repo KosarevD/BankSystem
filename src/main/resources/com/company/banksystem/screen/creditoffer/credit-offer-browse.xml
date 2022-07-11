@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        xmlns:c="http://jmix.io/schema/ui/jpql-condition"
+        caption="msg://creditOfferBrowse.caption"
+        focusComponent="creditOffersTable">
+    <data readOnly="true">
+        <collection id="creditOffersDc"
+                    class="com.company.banksystem.entity.CreditOffer">
+            <fetchPlan extends="_base">
+                <property name="client" fetchPlan="_base"/>
+                <property name="credit" fetchPlan="_base"/>
+                <property name="payments" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="creditOffersDl">
+                <query>
+                    <![CDATA[select e from CreditOffer e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="lookupSelectAction"
+                caption="msg:///actions.Select"
+                icon="LOOKUP_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="lookupCancelAction"
+                caption="msg:///actions.Cancel"
+                icon="LOOKUP_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="creditOffersTable" spacing="true">
+        <filter id="filter"
+                dataLoader="creditOffersDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="creditOffersTable"
+                    width="100%"
+                    dataContainer="creditOffersDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="monthQuantity"/>
+                <column id="amount"/>
+                <column id="client"/>
+                <column id="credit"/>
+            </columns>
+            <simplePagination/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="creditOffersTable.create"/>
+                <button id="editBtn" action="creditOffersTable.edit"/>
+                <button id="removeBtn" action="creditOffersTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

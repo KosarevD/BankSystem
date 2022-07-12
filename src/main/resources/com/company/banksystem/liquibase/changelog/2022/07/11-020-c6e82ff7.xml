@@ -47,7 +47,7 @@
             <column name="BANK_ID" value="ac9e420a2b2277028654a9027ee14001"/>
         </insert>
     </changeSet>
-    <changeSet id="5" author="BankSystem" context="!cuba">
+    <changeSet id="6" author="BankSystem" context="!cuba">
         <insert tableName="CREDIT" dbms="postgresql, mssql, hsqldb">
             <column name="ID" value="ec9e420a2b2288028654a9027ee14005"/>
             <column name="NAME" value="credit2"/>
@@ -56,7 +56,7 @@
             <column name="BANK_ID" value="ac9e420a2b2277028654a9027ee14001"/>
         </insert>
     </changeSet>
-    <changeSet id="6" author="BankSystem" context="!cuba">
+    <changeSet id="7" author="BankSystem" context="!cuba">
         <insert tableName="CREDIT_OFFER" dbms="postgresql, mssql, hsqldb">
             <column name="ID" value="fc9e420a2b2288028654a9027ee14006"/>
             <column name="MONTH_QUANTITY" value="4"/>
@@ -65,7 +65,7 @@
             <column name="CREDIT_ID" value="dc9e420a2b2288028654a9027ee14004"/>
         </insert>
     </changeSet>
-    <changeSet id="7" author="BankSystem" context="!cuba">
+    <changeSet id="8" author="BankSystem" context="!cuba">
         <insert tableName="PAYMENT" dbms="postgresql, mssql, hsqldb">
             <column name="ID" value="gc9e420a2b2288028654a9027ee14007"/>
             <column name="PAYMENT_DATE" value="11/08/2022"/>
@@ -75,7 +75,7 @@
             <column name="CREDIT_OFFER_ID" value="dc9e420a2b2288028654a9027ee14004"/>
         </insert>
     </changeSet>
-    <changeSet id="8" author="BankSystem" context="!cuba">
+    <changeSet id="9" author="BankSystem" context="!cuba">
         <insert tableName="PAYMENT" dbms="postgresql, mssql, hsqldb">
             <column name="ID" value="hc9e420a2b2288028654a9027ee14008"/>
             <column name="PAYMENT_DATE" value="11/09/2022"/>
@@ -85,7 +85,7 @@
             <column name="CREDIT_OFFER_ID" value="dc9e420a2b2288028654a9027ee14004"/>
         </insert>
     </changeSet>
-    <changeSet id="9" author="BankSystem" context="!cuba">
+    <changeSet id="10" author="BankSystem" context="!cuba">
         <insert tableName="PAYMENT" dbms="postgresql, mssql, hsqldb">
             <column name="ID" value="ic9e420a2b2288028654a9027ee14009"/>
             <column name="PAYMENT_DATE" value="11/10/2022"/>
@@ -95,7 +95,7 @@
             <column name="CREDIT_OFFER_ID" value="dc9e420a2b2288028654a9027ee14004"/>
         </insert>
     </changeSet>
-    <changeSet id="10" author="BankSystem" context="!cuba">
+    <changeSet id="11" author="BankSystem" context="!cuba">
         <insert tableName="PAYMENT" dbms="postgresql, mssql, hsqldb">
             <column name="ID" value="jc9e420a2b2288028654a9027ee14010"/>
             <column name="PAYMENT_DATE" value="11/11/2022"/>
